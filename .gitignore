@@ -9,7 +9,6 @@
 *.user
 *.userosscache
 *.sln.docstates
-*.code-workspace
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -32,8 +31,9 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
-# Visual Studio Code generateed folder
+# Visual Studio Code files
 .vscode/
+*.code-workspace
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
