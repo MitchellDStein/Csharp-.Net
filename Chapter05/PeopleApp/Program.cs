@@ -84,6 +84,17 @@ namespace PeopleApp
                 arg0: definetlyHuman.Name,
                 arg1: definetlyHuman.HomePlanet,
                 arg2: definetlyHuman.Instantiated);
+        
+            // using methods
+            definetlyHuman.WriteToConsole();
+            WriteLine(definetlyHuman.GetOrigin());
+
+            // using tuples
+            (string, int) fruit = definetlyHuman.GetFruit();
+            WriteLine($"{fruit.Item1}, {fruit.Item2} there are.");
+
+            var fruitNamed = definetlyHuman.GetNamedFruit();
+            WriteLine($"There are {fruitNamed.Number} {fruitNamed.Name}.");
         }
     }
 }
