@@ -4,7 +4,7 @@ using static System.Console;
 
 namespace Packt.Shared
 {
-    public class Person
+    public class Person : IComparable<Person>
     {
         // fields
         public string Name;
@@ -62,7 +62,7 @@ namespace Packt.Shared
 
         // using delegates
         // event delegate field
-        public EventHandler Shout;
+        public event EventHandler Shout;
 
         // data field
         public int AngerLevel;
@@ -80,6 +80,11 @@ namespace Packt.Shared
                     Shout(this, EventArgs.Empty);
                 }
             }
+        }
+
+        public int CompareTo(Person other)
+        {
+            return Name.CompareTo(other.Name);
         }
     }
 }

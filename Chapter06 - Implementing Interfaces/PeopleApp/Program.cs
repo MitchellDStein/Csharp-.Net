@@ -34,14 +34,45 @@ namespace PeopleApp
             WriteLine($"5! is {Person.Factorial(5)}");
 
             // using delegates
-            harry.Shout = Harry_Shout;
+            harry.Shout += Harry_Shout;
             for (int i = 0; i < 4; i++)
             {
                 harry.Poke();
             }
+
+
+            // using interfaces
+            Person[] people = {
+                new Person{Name = "Simon"},
+                new Person{Name = "George"},
+                new Person{Name = "Adam"},
+                new Person{Name = "Richard"}
+            };
+
+            WriteLine("Initial list of people:");
+            foreach (var person in people)
+            {
+                WriteLine($"{person.Name}");
+            }
+
+            WriteLine("Use Person's IComparable implementatin to sort: ");
+            Array.Sort(people);
+            foreach (var person in people)
+            {
+                WriteLine($"{person.Name}");
+            }
+
+
+            // using PersonComparer.cs
+            WriteLine("Use PersonComparer's IComparer implementatin to sort:");
+            Array.Sort(people, new PersonComparer());
+            foreach (var person in people)
+            {
+                WriteLine($"{person.Name}");
+            }
         }
 
-        private static void Harry_Shout(object sender, EventArgs e) 
+        private static void Harry_Shout(object sender, EventArgs e)
         // naming convention for methods that handle event are ObjectName_EventName
         {
             Person p = (Person)sender;
