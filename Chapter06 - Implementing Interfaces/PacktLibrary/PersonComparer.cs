@@ -1,3 +1,4 @@
+// using a separate class to compare objects
 using System.Collections.Generic;
 
 namespace Packt.Shared
@@ -12,7 +13,7 @@ namespace Packt.Shared
             // ... if they are equal
             if (result == 0)
             {
-                // ... then compare by the names
+                // ... then compare by alphabetical order
                 return x.Name.CompareTo(y.Name);
             }
             else
