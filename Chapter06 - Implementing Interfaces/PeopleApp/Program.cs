@@ -40,7 +40,6 @@ namespace PeopleApp
                 harry.Poke();
             }
 
-
             // using interfaces
             Person[] people = {
                 new Person{Name = "Simon"},
@@ -62,7 +61,6 @@ namespace PeopleApp
                 WriteLine($"{person.Name}");
             }
 
-
             // using PersonComparer.cs
             WriteLine("Use PersonComparer's IComparer implementatin to sort:");
             Array.Sort(people, new PersonComparer());
@@ -70,7 +68,6 @@ namespace PeopleApp
             {
                 WriteLine($"{person.Name}");
             }
-
 
             // Utilizing Thing.cs class for genetics
             var t1 = new Thing();
@@ -91,6 +88,35 @@ namespace PeopleApp
             gt2.Data = "Banana";
             WriteLine($"GeneticThing with a string: {gt2.Process("Banana")}");
 
+            // working with generic methods
+            string number1 = "4";
+            WriteLine("{0} squared is {1}.",
+                arg0: number1,
+                arg1: Squarer.Square<string>(number1));
+
+            byte number2 = 3;
+            WriteLine("{0} squared is {1}",
+                arg0: number2,
+                arg1: Squarer.Square(number2));
+
+
+            // Working with Struct types
+            var dv1 = new DisplacementVector(3, 5);
+            var dv2 = new DisplacementVector(-2, 7);
+            var dv3 = dv1 + dv2;
+            WriteLine($"({dv1.X}, {dv1.Y}) + ({dv2.X},{dv2.Y}) = ({dv3.X},{dv3.Y})");
+
+
+            // using class inherittance
+            Employee john = new Employee
+            {
+                Name = "John Jones",
+                DateOfBirth = new DateTime(1996, 10, 1)
+            };
+            john.WriteToConsole();
+            john.EmployeeCode = "JJ1001";
+            john.HireDate = new DateTime(2015, 11, 23);
+            WriteLine($"{john.Name} was hired on: {john.HireDate:dd/MM/yy}.");
         }
 
         private static void Harry_Shout(object sender, EventArgs e)
