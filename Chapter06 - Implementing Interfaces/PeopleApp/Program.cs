@@ -70,6 +70,27 @@ namespace PeopleApp
             {
                 WriteLine($"{person.Name}");
             }
+
+
+            // Utilizing Thing.cs class for genetics
+            var t1 = new Thing();
+            t1.Data = 42;
+            WriteLine($"Thing with an integer {t1.Process(42)}");
+
+            var t2 = new Thing();
+            t2.Data = "apple";
+            WriteLine($"Thing with a string: {t2.Process("apple")}");
+
+            // thing is currently flexible because any type can be set for Data and input parameters.
+            // We can fix that using Generics. See GenericThing class.
+            var gt1 = new GenericThing<int>();
+            gt1.Data = 42;
+            WriteLine($"GenericThing with an integer {gt1.Process(42)}");
+
+            var gt2 = new GenericThing<string>();
+            gt2.Data = "Banana";
+            WriteLine($"GeneticThing with a string: {gt2.Process("Banana")}");
+
         }
 
         private static void Harry_Shout(object sender, EventArgs e)
