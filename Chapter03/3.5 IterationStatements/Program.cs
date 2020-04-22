@@ -17,7 +17,7 @@ namespace IterationStatements
             }
 
             string password = string.Empty;
-            // int i = 0;
+            int i = 0;
             do
             {
                 Write("Enter your password: ");

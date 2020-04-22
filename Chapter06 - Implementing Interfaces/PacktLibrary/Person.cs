@@ -86,5 +86,9 @@ namespace Packt.Shared
         {
             return Name.CompareTo(other.Name);
         }
+
+        public override string ToString(){ // its usually better to override a method than hiding it
+            return $"{Name} is a {base.ToString()}."; // base allows a subclass to access mebers of its upper class.
+        }
     }
 }

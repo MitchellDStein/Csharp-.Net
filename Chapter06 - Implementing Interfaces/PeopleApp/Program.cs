@@ -113,10 +113,46 @@ namespace PeopleApp
                 Name = "John Jones",
                 DateOfBirth = new DateTime(1996, 10, 1)
             };
-            john.WriteToConsole();
+
+            john.WriteToConsole(); // using new WriteToConsole from Employee.cs
             john.EmployeeCode = "JJ1001";
             john.HireDate = new DateTime(2015, 11, 23);
             WriteLine($"{john.Name} was hired on: {john.HireDate:dd/MM/yy}.");
+
+            WriteLine(john.ToString());
+
+            Employee aliceInEmployee = new Employee { Name = "Alice", EmployeeCode = "AA332" };
+
+            Person aliceInPerson = aliceInEmployee;
+
+            aliceInEmployee.WriteToConsole();
+            aliceInPerson.WriteToConsole();
+
+            WriteLine(aliceInEmployee.ToString());
+            WriteLine(aliceInPerson.ToString());
+
+
+            // explicit casting
+            // Employee explicitAlice = aliceInPerson; // fails as we cannot cast Person as Employee
+            // Employee explicitAlice = (Employee)aliceInPerson; // this could lead to InvalidCastException
+            // instead use a if statement
+            if (aliceInPerson is Employee)
+            {
+                WriteLine($"{nameof(aliceInPerson)} IS an Employee");
+
+                Employee explicitAlice = (Employee)aliceInPerson;
+                    // safely do someting with explicitAlice
+            }
+
+            // you may also use AS to explicitly cast
+            Employee aliceAsEmployee = aliceInPerson as Employee;
+
+            if (aliceAsEmployee != null)
+            {
+                WriteLine($"{nameof(aliceInPerson)} AS an Employee");
+                    // do something with aliceAsEmployee
+            }
+
         }
 
         private static void Harry_Shout(object sender, EventArgs e)
@@ -125,5 +161,6 @@ namespace PeopleApp
             Person p = (Person)sender;
             WriteLine($"{p.Name} is this angry: {p.AngerLevel}.");
         }
+
     }
 }
