@@ -87,8 +87,20 @@ namespace Packt.Shared
             return Name.CompareTo(other.Name);
         }
 
-        public override string ToString(){ // its usually better to override a method than hiding it
+        public override string ToString()
+        { // its usually better to override a method than hiding it
             return $"{Name} is a {base.ToString()}."; // base allows a subclass to access mebers of its upper class.
+        }
+
+        public void TimeTravel(DateTime when)
+        {
+            if (when <= DateOfBirth)
+            {
+                throw new PersonException("If you travel back in time to a date earlier than your own birth, then the universe will explode!");
+            } else
+            {
+                WriteLine($"Welcome to {when:yyyy}");
+            }
         }
     }
 }

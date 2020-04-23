@@ -34,6 +34,7 @@ namespace PeopleApp
             WriteLine($"5! is {Person.Factorial(5)}");
 
             // using delegates
+            WriteLine("harry shouts");
             harry.Shout += Harry_Shout;
             for (int i = 0; i < 4; i++)
             {
@@ -141,7 +142,7 @@ namespace PeopleApp
                 WriteLine($"{nameof(aliceInPerson)} IS an Employee");
 
                 Employee explicitAlice = (Employee)aliceInPerson;
-                    // safely do someting with explicitAlice
+                // safely do someting with explicitAlice
             }
 
             // you may also use AS to explicitly cast
@@ -150,9 +151,19 @@ namespace PeopleApp
             if (aliceAsEmployee != null)
             {
                 WriteLine($"{nameof(aliceInPerson)} AS an Employee");
-                    // do something with aliceAsEmployee
+                // do something with aliceAsEmployee
             }
-
+            
+            // in person class, we created our own exception PersonException which has a message
+            try
+            {
+                john.TimeTravel(new DateTime(1999, 12, 31));
+                john.TimeTravel(new DateTime(1950, 12, 25));
+            }
+            catch (PersonException ex)
+            {
+                WriteLine(ex.Message);
+            }
         }
 
         private static void Harry_Shout(object sender, EventArgs e)
@@ -161,6 +172,5 @@ namespace PeopleApp
             Person p = (Person)sender;
             WriteLine($"{p.Name} is this angry: {p.AngerLevel}.");
         }
-
     }
 }
