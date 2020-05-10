@@ -153,7 +153,7 @@ namespace PeopleApp
                 WriteLine($"{nameof(aliceInPerson)} AS an Employee");
                 // do something with aliceAsEmployee
             }
-            
+
             // in person class, we created our own exception PersonException which has a message
             try
             {
@@ -164,6 +164,23 @@ namespace PeopleApp
             {
                 WriteLine(ex.Message);
             }
+
+
+            // using StringExtensions
+            string email1 = "lorem@ipsum.com";
+            string email2 = "not$email.com";
+
+            WriteLine(
+                "{0} is a valid e-mail address: {1}",
+                arg0: email1,
+                arg1: email1.IsValidEmail());
+
+            WriteLine(
+                "{0} is a valid e-mail address: {1}",
+                arg0: email2,
+                arg1: email2.IsValidEmail());
+
+
         }
 
         private static void Harry_Shout(object sender, EventArgs e)

@@ -1,0 +1,31 @@
+1. What is a delegate?
+    A delegate is an object which refers to a method or you can say it is a reference type variable that can hold a reference to the methods
+    It provides a way which tells which method is to be called when an event is triggered
+
+2. What is an event?
+    An event is nothing but an encapsulated delegate.
+    An event is a message sent by an object to signal the occurrence of an action
+
+3. How are a base class and a derived class related?
+    a base class is the parent of a derived class.
+    a derived class has all the properties of the base class but can add new properties
+
+4. What is the difference between is and as operators?
+    is will return an exception while as will return a null if a type cannot be cast
+
+5. Which keyword is used to prevent a class from being derived from,
+or a method from being further overridden?
+    sealed
+
+6. Which keyword is used to prevent a class from being instantiated with the 'new' keyword?
+    private
+
+7. Which keyword is used to allow a member to be overridden?
+    override
+
+8. What's the difference between a destructor and a deconstruct method?
+    A destructor releases resources; that is, it destroys an object. A deconstruct method returns an object split up into its constituent parts and uses the C# deconstruction syntax, for example, when working with tuples
+
+9. What are the signatures of the constructors that all exceptions should have?
+
+10. What is an extension method and how do you define one?
