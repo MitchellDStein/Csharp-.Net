@@ -19,6 +19,7 @@ namespace Working_With_Streams
             // WorkingWithText();
             WorkingWithXml();
             WorkWithCompression();
+            WorkWithCompression(useBrotli: false);
         }
 
         static void WorkingWithText()
@@ -79,12 +80,25 @@ namespace Working_With_Streams
             }
         }
 
-        static void WorkWithCompression()
+        static void WorkWithCompression(bool useBrotli = true)
         {
+            string fileExt = useBrotli ? "brotli" : "gzip";     // add check for using brotili or gzip compression
+
             // compress the XML output
-            string gzipFilePath = Combine(CurrentDirectory, "streams.gzip");
-            FileStream gzipFile = File.Create(gzipFilePath);
-            using (GZipStream compressor = new GZipStream(gzipFile, CompressionMode.Compress))
+            string filePath = Combine(CurrentDirectory, $"streams.{fileExt}");
+            FileStream file = File.Create(filePath);
+
+            Stream compressor;
+            if (useBrotli)
+            {
+                compressor = new BrotliStream(file, CompressionMode.Compress);
+            }
+            else
+            {
+                compressor = new GZipStream(file, CompressionMode.Compress);
+            }
+
+            using (compressor)
             {
                 using (XmlWriter xmlGzip = XmlWriter.Create(compressor))
                 {
@@ -98,15 +112,27 @@ namespace Working_With_Streams
             }
 
             // output all the contents of the compressed file
-            WriteLine("\n{0} contains {1:N0} bytes.", gzipFilePath, new FileInfo(gzipFilePath).Length);
+            WriteLine("\n{0} contains {1:N0} bytes.", filePath, new FileInfo(filePath).Length);
 
             // read a compressed file
             WriteLine($"The compressed contents:");
-            WriteLine(File.ReadAllText(gzipFilePath));
+            WriteLine(File.ReadAllText(filePath));
 
             WriteLine("\nReading the compressed XML file:");
-            gzipFile = File.Open(gzipFilePath, FileMode.Open);
-            using (GZipStream decompressor = new GZipStream(gzipFile, CompressionMode.Decompress))
+            file = File.Open(filePath, FileMode.Open);
+
+            Stream decompressor;
+            if (useBrotli)
+            {
+                decompressor = new BrotliStream(file, CompressionMode.Decompress);
+            }
+            else
+            {
+                decompressor = new GZipStream(
+                file, CompressionMode.Decompress);
+            }
+
+            using (decompressor)
             {
                 using (XmlReader reader = XmlReader.Create(decompressor))
                 {
