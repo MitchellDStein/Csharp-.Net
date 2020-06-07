@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "4.1 WritingFunctions"
+		},
+		{
+			"path": "4.2 Debugging"
+		},
+		{
+			"path": "4.3 Dumping"
+		},
+		{
+			"path": "4.4 Instrumenting"
+		},
+		{
+			"path": "4.5 Unit Testing"
+		},
+		{
+			"path": "Exercises\\4.1 Test Knowledge"
+		},
+		{
+			"path": "Exercises\\4.2 Practive Writing Functions with Debugging and Unit Testing"
+		}
+	]
+}

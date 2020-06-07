@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "PacktLibrary",
+			"path": "PacktLibrary"
+		},
+		{
+			"name": "PeopleApp",
+			"path": "PeopleApp"
+		},
+		{
+			"path": "Exercises"
+		}
+	]
+}

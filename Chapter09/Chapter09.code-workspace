@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "Working With File Systems"
+		},
+		{
+			"path": "Working With Streams"
+		},
+		{
+			"path": "Working With Encodings"
+		},
+		{
+			"path": "Working With Serialization"
+		},
+		{
+			"path": "Exercise"
+		}
+	]
+}
