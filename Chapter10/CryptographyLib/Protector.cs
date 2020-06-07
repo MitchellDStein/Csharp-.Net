@@ -68,7 +68,7 @@ namespace CryptographyLib
             // generate random salt
             var rng = RandomNumberGenerator.Create();
             var saltBytes = new byte[16];
-            rng.GetBytes(saltBytes);
+            rng.GetBytes(saltBytes);        // create an array of length saltBytes with random values
             var saltText = Convert.ToBase64String(saltBytes);
 
             //generate the salted and hashed password
@@ -96,8 +96,7 @@ namespace CryptographyLib
             return (saltedhashedPassword == user.SaltedHashedPassword);
         }
 
-        private static string SaltAndHashPassword(
-         string password, string salt)
+        private static string SaltAndHashPassword(string password, string salt)
         {
             var sha = SHA256.Create();
             var saltedPassword = password + salt;
