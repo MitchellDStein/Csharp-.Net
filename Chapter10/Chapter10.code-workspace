@@ -5,6 +5,12 @@
 		},
 		{
 			"path": "EncryptionApp"
+		},
+		{
+			"path": "SigningApp"
+		},
+		{
+			"path": "RandomizingApp"
 		}
 	]
 }
