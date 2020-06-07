@@ -33,8 +33,9 @@ bld/
 
 # Visual Studio Code files
 .vscode/
-*.code-workspace
+# *.code-workspace
 [Ee]xercises/
+[Ee]xercise/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
