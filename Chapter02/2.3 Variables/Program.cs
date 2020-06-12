@@ -24,12 +24,13 @@ namespace Variables
             // property named Length
             int length = anotherName.Length;
 
-            var population = 66_000_000; // 66 million in UK
-            var weight = 1.88; // in kilograms
-            var price = 4.99M; // in pounds sterling
-            var fruit = "Apples"; // strings use double-quotes
-            var letter = 'Z'; // chars use single-quotes
-            var happy = true; // Booleans have value of true or false
+            // examples of different types
+            var population = 66_000_000;    // 66 million in UK
+            var weight = 1.88;              // in kilograms
+            var price = 4.99M;              // in pounds sterling
+            var fruit = "Apples";           // strings use double-quotes
+            var letter = 'Z';               // chars use single-quotes
+            var happy = true;               // Booleans have value of true or false
 
             Console.WriteLine($"default(int) = {default(int)}");
             Console.WriteLine($"default(bool) = {default(bool)}");
