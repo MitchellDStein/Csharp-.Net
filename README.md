@@ -6,14 +6,14 @@ This is a collection of work throughout the book _C# 8.0 and .NET Core 3.0 – M
 
 ## Examples
 
-- [C# Basics](<(https://github.com/MitchellDStein/Csharp-.Net/tree/master/Chapter02)>)
-- [Flow and Types](<(https://github.com/MitchellDStein/Csharp-.Net/tree/master/Chapter03)>)
-- [Functions](<(https://github.com/MitchellDStein/Csharp-.Net/tree/master/Chapter04)>)
-- [Custom Types and OOP](<(https://github.com/MitchellDStein/Csharp-.Net/tree/master/Chapter05)>)
+- [C# Basics]((https://github.com/MitchellDStein/Csharp-.Net/tree/master/Chapter02))
+- [Flow and Types]((https://github.com/MitchellDStein/Csharp-.Net/tree/master/Chapter03))
+- [Functions]((https://github.com/MitchellDStein/Csharp-.Net/tree/master/Chapter04))
+- [Custom Types and OOP]((https://github.com/MitchellDStein/Csharp-.Net/tree/master/Chapter05))
 - [Interfaces and Inheritance](https://github.com/MitchellDStein/Csharp-.Net/tree/master/Chapter06%20-%20Implementing%20Interfaces)
-- [.NET Types](<(https://github.com/MitchellDStein/Csharp-.Net/tree/master/Chapter08)>)
+- [.NET Types]((https://github.com/MitchellDStein/Csharp-.Net/tree/master/Chapter08))
 - [Files, Streams, and Serialization](https://github.com/MitchellDStein/Csharp-.Net/tree/master/Chapter09)
-- [Data Protection and Encryption](<(https://github.com/MitchellDStein/Csharp-.Net/tree/master/Chapter10)>)
+- [Data Protection and Encryption]((https://github.com/MitchellDStein/Csharp-.Net/tree/master/Chapter10))
 
 ---
 
