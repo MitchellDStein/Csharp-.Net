@@ -71,7 +71,7 @@ namespace CryptographyLib
             return Convert.ToBase64String(sha.ComputeHash(Encoding.Unicode.GetBytes(saltedPassword)));
         }
 
-        public static User Register(string username, string password)
+        public static User Register(string username, string password, string[] roles = null)
         {
             // generate random salt
             var rng = RandomNumberGenerator.Create();
@@ -86,7 +86,8 @@ namespace CryptographyLib
             {
                 Name = username,
                 Salt = saltText,
-                SaltedHashedPassword = saltedHashedPassword
+                SaltedHashedPassword = saltedHashedPassword,
+                Roles = roles,
             };
             Users.Add(user.Name, user);
             return user;
@@ -166,7 +167,6 @@ namespace CryptographyLib
             PublicKey = rsa.ToXmlStringExt(false); // exclude private key
             return ToBase64String(rsa.SignHash(hashedData, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1));
         }
-
         public static bool ValidateSignature(string data, string signature)
         {
             byte[] dataBytes = Encoding.Unicode.GetBytes(data);
@@ -190,6 +190,20 @@ namespace CryptographyLib
             // data is an array filled with cryptographically strong random bytes
             return data;
         }
+        // ========== END Generating random numbers for cryptography ==========
+
+        // ========== START User Login Code ==========
+        public static void LogIn(string username, string password)
+        {
+            if (CheckPassword(username, password))
+            {
+                var identity = new GenericIdentity(username, "MitchAuth");
+                var principal  = new GenericPrincipal(identity, Users[username].Roles);
+                System.Threading.Thread.CurrentPrincipal = principal;
+            }
+        }
+
+
     }
 
 }
