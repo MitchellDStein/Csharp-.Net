@@ -3,5 +3,10 @@
 		{
 			"path": "Working With EFCore"
 		}
-	]
+	],
+	"settings": {
+		"cSpell.words": [
+			"ntext"
+		]
+	}
 }
