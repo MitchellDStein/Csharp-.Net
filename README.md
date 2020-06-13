@@ -14,7 +14,7 @@ This is a collection of work throughout the book _C# 8.0 and .NET Core 3.0 – M
 - [.NET Types](https://github.com/MitchellDStein/Csharp-.Net/tree/master/Chapter08)
 - [Files, Streams, and Serialization](https://github.com/MitchellDStein/Csharp-.Net/tree/master/Chapter09)
 - [Data Protection and Encryption](https://github.com/MitchellDStein/Csharp-.Net/tree/master/Chapter10)
-
+- [Database integration with SQLite](https://github.com/MitchellDStein/Csharp-.Net/tree/master/Chapter11)
 ---
 
 ### This repository will be continually updated with new chapters until the book is finished.
