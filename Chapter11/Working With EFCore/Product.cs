@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Working_With_EFCore
 {
+    // represents a row in the products table in Northwind DB
     public class Product
     {
         public int ProductID { get; set; }
@@ -10,6 +11,9 @@ namespace Working_With_EFCore
         [Required]
         [StringLength(40)]
         public string ProductName { get; set; }
+
+        [Column(TypeName="int")]
+        public int SupplierID { get; set; }
 
         [Column("UnitPrice", TypeName = "money")]
         public decimal? Cost { get; set; }      // check if NULL

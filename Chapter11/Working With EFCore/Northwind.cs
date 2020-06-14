@@ -12,8 +12,8 @@ namespace Working_With_EFCore
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string dbPAth = System.IO.Path.Combine(
-            System.Environment.CurrentDirectory, "Northwind.db");
-            optionsBuilder.UseSqlite($"Filename={dbPAth}");
+                System.Environment.CurrentDirectory, "Northwind.db");
+                optionsBuilder.UseSqlite($"Filename={dbPAth}");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
