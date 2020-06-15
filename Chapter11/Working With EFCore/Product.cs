@@ -25,6 +25,7 @@ namespace Working_With_EFCore
 
         // these two define the foreign key relationship to the categories table
         public int CategoryID { get; set; }
+        
         public virtual Category Category { get; set; }
     }
 }

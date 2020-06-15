@@ -13,7 +13,9 @@ namespace Working_With_EFCore
         {
             string dbPAth = System.IO.Path.Combine(
                 System.Environment.CurrentDirectory, "Northwind.db");
-                optionsBuilder.UseSqlite($"Filename={dbPAth}");
+                // optionsBuilder.UseSqlite($"Filename={dbPAth}");
+                // UseLazyLoadingProxies makes multiple trips to the DB to fetch all data
+                optionsBuilder.UseLazyLoadingProxies().UseSqlite($"Filename={dbPAth}");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -23,6 +25,9 @@ namespace Working_With_EFCore
                 .Property(category => category.CategoryName)
                 .IsRequired()   // NOT NULL
                 .HasMaxLength(15);
+
+            // Filter to remove discontinued products
+            modelBuilder.Entity<Product>().HasQueryFilter(p => !p.Discontinued);
         }
     }
 }
