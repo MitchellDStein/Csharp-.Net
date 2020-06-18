@@ -20,10 +20,16 @@ namespace Working_With_EFCore
             // QueryingCategories(showQueries);
             // QueryingProducts(showQueries);
             // QueryingWithLike(showQueries);
-            if (AddProduct(6, "Bob's Burgers", 500M))
-            {
-                WriteLine("Add product successful.");
-            }
+            // if (AddProduct(6, "Bob's Burgers", 500M))
+            // {
+            //     WriteLine("Add product successful.");
+            // }
+            // if (IncreaseProductPrice("Bob", 20M))
+            // {
+            //     WriteLine("Update product price successful.");
+            // }
+            int deleted = DeleteProducts("Bob");
+            WriteLine($"{deleted} product(s) were deleted.");
             ListProducts();
         }
 
@@ -172,14 +178,46 @@ namespace Working_With_EFCore
             using (var db = new Northwind())
             {
                 WriteLine("{0,-3} {1,-35} {2,8} {3,5} {4}",
-                "ID", "Product Name", "Cost", "Stock", "Disc.");
+                  "ID", "Product Name", "Cost", "Stock", "Disc.");
 
                 foreach (var item in db.Products.OrderByDescending(p => p.Cost))
                 {
                     WriteLine("{0:000} {1,-35} {2,8:$#,##0.00} {3,5} {4}",
-                    item.ProductID, item.ProductName, item.Cost,
-                    item.Stock, item.Discontinued);
+                      item.ProductID, item.ProductName, item.Cost,
+                      item.Stock, item.Discontinued);
                 }
+            }
+        }
+
+        static bool IncreaseProductPrice(string name, decimal amount)
+        {
+            using (var db = new Northwind())
+            {
+                // get first product whose name starts with name
+                Product updateProduct = db.Products.First(p => p.ProductName.StartsWith(name));
+
+                updateProduct.Cost += amount;
+
+                int affected = db.SaveChanges();
+                return (affected == 1);
+            }
+        }
+
+        static int DeleteProducts(string name)
+        {
+            using (var db = new Northwind())
+            {
+                // start an explicit transaction and output isolation level
+                using (IDbContextTransaction t = db.Database.BeginTransaction())
+                {
+                    WriteLine("Transaction isolation level: {0}", t.GetDbTransaction().IsolationLevel); // outputs: Serializable
+                }
+                IEnumerable<Product> products = db.Products.Where(p => p.ProductName.StartsWith(name));
+
+                db.Products.RemoveRange(products);
+
+                int affected = db.SaveChanges();
+                return affected;
             }
         }
     }

@@ -1,33 +1,36 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Proxies;
 
 namespace Working_With_EFCore
 {
-    // this manages the connection to the DB
+    // this manages the connection to the database
     public class Northwind : DbContext
     {
-        // these properties map to tables in the database
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPAth = System.IO.Path.Combine(
-                System.Environment.CurrentDirectory, "Northwind.db");
-                // optionsBuilder.UseSqlite($"Filename={dbPAth}");
-                // UseLazyLoadingProxies makes multiple trips to the DB to fetch all data
-                optionsBuilder.UseLazyLoadingProxies().UseSqlite($"Filename={dbPAth}");
+            string path = System.IO.Path.Combine(System.Environment.CurrentDirectory, "Northwind.db");
+            optionsBuilder.UseLazyLoadingProxies().UseSqlite($"Filename={path}");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Fluent API usage to limit the length of a category name to 15
+            // Fluent API 
             modelBuilder.Entity<Category>()
-                .Property(category => category.CategoryName)
-                .IsRequired()   // NOT NULL
-                .HasMaxLength(15);
+              .Property(category => category.CategoryName)
+              .IsRequired() // NOT NULL
+              .HasMaxLength(15);
 
-            // Filter to remove discontinued products
-            modelBuilder.Entity<Product>().HasQueryFilter(p => !p.Discontinued);
+            // added to "fix" the decimal support in SQLite
+            modelBuilder.Entity<Product>()
+              .Property(product => product.Cost)
+              .HasConversion<double>();
+
+            // global filter to remove discontinued products
+            modelBuilder.Entity<Product>()
+              .HasQueryFilter(p => !p.Discontinued);
         }
     }
 }
