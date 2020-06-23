@@ -14,7 +14,10 @@ namespace LinqObjectsWithDB
             // FilterAndSort();
             // JoinCatsAndProds();
             // GroupjoinCategoriesAndProducts();
-            AggregateProducts();
+            // AggregateProducts();
+            // CustomExtensionMethods();
+            // OutputProductsAsXml();
+            ReadXML();
         }
 
         static void FilterAndSort()
@@ -23,6 +26,7 @@ namespace LinqObjectsWithDB
             {
                 var query = db.Products
                     .AsEnumerable() // fix error for client evaluation
+                                    // .ProcessSequence()
                     .Where(product => product.UnitPrice < 10M)          // IQueryable<Product>
                     .OrderByDescending(product => product.UnitPrice)    // IOrderedQueryable<Product>
                     .Select(product => new
@@ -120,6 +124,66 @@ namespace LinqObjectsWithDB
                   "Value of units in stock:",
                   db.Products.AsEnumerable()
                     .Sum(p => p.UnitPrice * p.UnitsInStock));
+            }
+        }
+
+        static void CustomExtensionMethods()
+        {
+            using (var db = new Northwind())
+            {
+                WriteLine("Mean units in stock: {0:N0}",
+                db.Products.Average(p => p.UnitsInStock));
+
+                WriteLine("Mean unit price: {0:$#,##0.00}",
+                db.Products.AsEnumerable().Average(p => p.UnitPrice));
+
+                WriteLine("Median units in stock: {0:N0}",
+                db.Products.Median(p => p.UnitsInStock));
+
+                WriteLine("Median unit price: {0:$#,##0.00}",
+                db.Products.Median(p => p.UnitPrice));
+
+                WriteLine("Mode units in stock: {0:N0}",
+                db.Products.Mode(p => p.UnitsInStock));
+
+                WriteLine("Mode unit price: {0:$#,##0.00}",
+                db.Products.Mode(p => p.UnitPrice));
+            }
+        }
+
+        static void OutputProductsAsXml()
+        {
+            using (var db = new Northwind())
+            {
+                var productsForXml = db.Products.ToArray();
+
+                var xml = new XElement("products",
+                    from p in productsForXml
+                    select new XElement("product",
+                            new XAttribute("id", p.ProductID),
+                            new XAttribute("price", p.UnitPrice),
+                        new XElement("name", p.ProductName)));
+
+                WriteLine(xml.ToString());
+            }
+        }
+
+        static void ReadXML()
+        {
+            XDocument doc = XDocument.Load("settings.xml");
+
+            var xmlFile = doc.Descendants("appSettings")
+                .Descendants("add")
+                .Select(node => new
+                {
+                    Key = node.Attribute("key").Value,
+                    Value = node.Attribute("value").Value
+                })
+                .ToArray();
+
+            foreach (var item in xmlFile)
+            {
+                WriteLine($"{item.Key}: {item.Value}");
             }
         }
     }
