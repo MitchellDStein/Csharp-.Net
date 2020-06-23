@@ -12,7 +12,9 @@ namespace LinqObjectsWithDB
         static void Main(string[] args)
         {
             // FilterAndSort();
-            JoinCatsAndProds();
+            // JoinCatsAndProds();
+            // GroupjoinCategoriesAndProducts();
+            AggregateProducts();
         }
 
         static void FilterAndSort()
@@ -60,7 +62,7 @@ namespace LinqObjectsWithDB
             }
         }
 
-        static void GroupJoinCategoriesAndProducts()
+        static void GroupjoinCategoriesAndProducts()
         {
             using (var db = new Northwind())
             {
@@ -84,9 +86,40 @@ namespace LinqObjectsWithDB
                         item.Products.Count());
                     foreach (var product in item.Products)
                     {
-                        WriteLine($" {product.ProductName}");
+                        WriteLine($"    {product.ProductName}");
                     }
                 }
+            }
+        }
+
+        static void AggregateProducts()
+        {
+            using (var db = new Northwind())
+            {
+                WriteLine("{0,-25} {1,10}",
+                  "Product count:",
+                  db.Products.AsEnumerable().Count());
+
+                WriteLine("{0,-25} {1,10:$#,##0.00}",
+                  "Highest product price:",
+                  db.Products.AsEnumerable().Max(p => p.UnitPrice));
+
+                WriteLine("{0,-25} {1,10:N0}",
+                  "Sum of units in stock:",
+                  db.Products.AsEnumerable().Sum(p => p.UnitsInStock));
+
+                WriteLine("{0,-25} {1,10:N0}",
+                  "Sum of units on order:",
+                  db.Products.AsEnumerable().Sum(p => p.UnitsOnOrder));
+
+                WriteLine("{0,-25} {1,10:$#,##0.00}",
+                  "Average unit price:",
+                  db.Products.AsEnumerable().Average(p => p.UnitPrice));
+
+                WriteLine("{0,-25} {1,10:$#,##0.00}",
+                  "Value of units in stock:",
+                  db.Products.AsEnumerable()
+                    .Sum(p => p.UnitPrice * p.UnitsInStock));
             }
         }
     }
