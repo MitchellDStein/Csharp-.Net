@@ -1,3 +1,16 @@
 {
-	"folders": []
+	"folders": [
+		{
+			"path": "MonitoringApp"
+		},
+		{
+			"path": "MonitoringLib"
+		},
+		{
+			"path": "MonitoringWithTasks"
+		},
+		{
+			"path": "NestedAndChildTasks"
+		}
+	]
 }
