@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace NorthwindShared
+namespace Practical.Shared
 {
   public class Order
   {

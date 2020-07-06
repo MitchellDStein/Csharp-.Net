@@ -1,4 +1,4 @@
-namespace NorthwindShared
+namespace Practical.Shared
 {
   public class OrderDetail
   {

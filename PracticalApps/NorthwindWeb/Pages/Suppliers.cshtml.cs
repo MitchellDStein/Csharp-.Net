@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc; // Model-View-Controller
 
-using NorthwindShared;
+using Practical.Shared;
 
 namespace NorthwindWeb.Pages
 {

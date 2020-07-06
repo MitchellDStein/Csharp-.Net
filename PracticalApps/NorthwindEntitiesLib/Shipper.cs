@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace NorthwindShared
+namespace Practical.Shared
 {
   public class Shipper
   {
