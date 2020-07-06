@@ -1,5 +1,6 @@
 @page
 @model NorthwindWeb.Pages.SuppliersModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <div class="row">
   <h1 class="display-2">Suppliers</h1>
@@ -14,4 +15,11 @@
     }
     </tbody>
   </table>
+</div>
+<div class="row">
+  <p>Enter new supplier name:</p>
+  <form action="" method="post">
+    <div><input asp-for="Supplier.CompanyName" /></div> @* "asp-for" enables data binding to the model behind the Razor page*@
+    <input type="submit">
+  </form>
 </div>
