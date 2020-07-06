@@ -1,4 +1,4 @@
-namespace Northwind.Shared
+namespace NorthwindShared
 {
   public class Product
   {

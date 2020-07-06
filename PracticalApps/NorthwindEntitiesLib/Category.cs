@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Northwind.Shared
+namespace NorthwindShared
 {
   public class Category
   {
