@@ -12,9 +12,9 @@ namespace NorthwindWeb.Pages
         private Northwind db; // for database access
         public IEnumerable<string> Suppliers { get; set; }
 
-        public SuppliersModel(Northwind dbData)
+        public SuppliersModel(Northwind dbContent)
         {
-            db = dbData;
+            db = dbContent;
         }
 
         public void OnGet()
