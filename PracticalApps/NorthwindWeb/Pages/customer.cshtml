@@ -46,7 +46,7 @@
               @foreach(OrderDetail detail in order.OrderDetails)
               {
                 <tr>
-                  <td>@detail.Product.ProductName</td>
+                  <td><a href="https://www.google.com/search?q=@detail.Product.ProductName">@detail.Product.ProductName</a></td>
                   <td>@detail.Quantity</td>
                   <td>@detail.UnitPrice.ToString("c")</td>
                   <td>@((detail.Quantity * detail.UnitPrice).ToString("c"))</td>
